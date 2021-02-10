@@ -9,9 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebTamplate.Data;
 
-namespace CecSessionsUI
+namespace CecSessions.UI
 {
     public class Startup
     {
@@ -26,9 +25,15 @@ namespace CecSessionsUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            ServicesInitializer.ConfigureDbContext(Configuration, services);
+
+            //add to injections
+            ServicesInitializer.ConfigureServices(services);
+
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
