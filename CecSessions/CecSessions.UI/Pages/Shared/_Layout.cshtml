@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Official website of CEC of RA">
+    <meta name="author" content="CEC">
+    <meta name="keyword" content="CEC,Central,Electoral,Commission,Republic,Armenia,Elections">
+    <base href="~/" />
+    <link rel="apple-touch-icon" href="~/images/gerb.gif">
+    <link rel="icon" type="image/gif" href="~/images/gerb.gif">
+
+    <environment include="Development">
+        <!-- Icons-->
+        <link href="~/lib/@@coreui/icons/css/all.min.css" rel="stylesheet">
+
+        <!-- Main styles for this application-->
+        <link href="~/lib/@@coreui/coreui/dist/css/coreui.min.css" rel="stylesheet" />
+
+        <!-- Additional styles-->
+        <link href="~/css/pagination-style.css" rel="stylesheet">
+        <link href="~/css/site.css" rel="stylesheet" />
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+
+        <link rel="stylesheet" href="~/lib/select2/select2.min.css">
+        <script src="~/lib/select2/select2.min.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <!-- Icons-->
+        <link href="~/lib/@@coreui/icons/css/all.min.css" rel="stylesheet">
+
+        <!-- Main styles for this application-->
+        <link href="~/lib/@@coreui/coreui/dist/css/coreui.min.css" rel="stylesheet" />
+
+        <!-- Additional styles-->
+        <link href="~/css/site.min.css" rel="stylesheet" />
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="~/lib/select2/select2.min.css">
+        <script src="~/lib/select2/select2.min.js"></script>
+    </environment>
+    @RenderSection("Styles", required: false)
+</head>
+
+<body class="c-app">
+    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+        <div class="c-sidebar-brand d-lg-down-none">
+            <img class="c-sidebar-brand-full" width="46" height="46" alt="CEC" src="~/images/logo-cec.png" />
+            <img class="c-sidebar-brand-minimized" width="35" height="35" alt="CEC" src="~/images/logo-cec.png" />
+        </div>
+
+        <partial name="_SideBar" />
+
+        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    </div>
+    <div class="c-wrapper c-fixed-components">
+        <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+            <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+                <i class="c-icon cil-menu c-icon-lg"></i>
+            </button>
+            <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+                <i class="c-icon cil-menu c-icon-lg"></i>
+            </button>
+        </header>
+        <div class="c-body">
+            <main class="c-main">
+                <div class="container-fluid">
+                    <div class="fade-in">
+                        @RenderBody()
+                    </div>
+                </div>
+            </main>
+            <footer class="c-footer">
+                <div><span>&copy; @DateTime.Now.Year - cec</span></div>
+            </footer>
+        </div>
+    </div>
+
+
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    <script src="~/lib/@@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+
+
+    @* Blazor JS*@
+    <script src="_framework/blazor.server.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
