@@ -18,6 +18,8 @@ namespace CecSessions.Core
             var SmtpUsername = "noreplaycec@gmail.com";
             var SmtpPassword = "Sa123456789!";
 
+ 
+
             using (MailMessage mail = new MailMessage())
             {
                 mail.From = new MailAddress(SmtpUsername);

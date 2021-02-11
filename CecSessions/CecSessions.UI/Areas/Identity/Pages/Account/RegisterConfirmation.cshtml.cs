@@ -64,7 +64,7 @@ namespace PecMembers.UI.Areas.Identity.Pages.Account
             //var SmtpUsername = "noreplaycec@gmail.com";
             //var SmtpPassword = "Sa123456!";
             var toMail = Email;
-          //  var subject = " Հարգելի քաղաքացի";
+            var subject = " Հարգելի քաղաքացի";
             var text = new StringBuilder();
             //text.AppendFormat("Հարգելի օգտատեր , {0}\n", user);
             text.AppendLine("Ձեր Մուտքանուն է ՝"+user.UserName+"," );
@@ -77,7 +77,7 @@ namespace PecMembers.UI.Areas.Identity.Pages.Account
             var textForMail=text.ToString();
 
 
-            //MailSender.Sender(toMail, subject, textForMail);
+            MailSender.Sender(toMail, subject, textForMail);
 
 
 
