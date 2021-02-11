@@ -1,0 +1,81 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Մուտք համակարգ";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <form id="account" method="post">
+                            <div class="card-header text-white bg-info">
+                                <h6><i class="cil-lock-unlocked"></i> Մուտք գործեք Ձեր գործարկողով</h6>
+                            </div>
+                            <hr />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label><i class="cil-user"></i> Մուտքանուն</label>
+                                <input asp-for="Input.UserNameInput" class="form-control" />
+                                <span asp-validation-for="Input.UserNameInput" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="cil-lock-locked"></i> Գաղտնաբառ</label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input asp-for="Input.RememberMe" />
+                                        Հիշել ինձ
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-lg btn-success px-4"><i class="cil-input"></i> Մուտք</button>
+                                    <a class="btn btn-lg btn-danger px-4" href="/?page=%2FAccount%2FHome%2FIndex"><i class="cil-action-undo"></i> Չեղարկել</a>
+                                </div>
+                               @* <div class="col-12" style="margin-top:20px;">
+                                    <a href="/Identity/Account/ForgotPassword">Մոռացել եք գաղտնաբառը՞</a>
+                                </div>*@
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                 <div class="card-header text-white bg-success" style="flex:0.8">
+                    <div class="card-body text-center">
+                        <div>
+                            <h5> <i class="cil-pen"></i> ԿԸՀ նիստեր</h5>
+                            <h5>Ավտոմատացված </h5>
+                            <h5>Համակարգ</h5>
+                            <hr class="bg-white" />
+                            <div class="right-img">
+                                <img src="~/images/sLogo.png" style="width:50%" />
+                            </div>
+                            <hr class="bg-white" />
+                            <p class="margin-top-10 text-left text-center">
+                                <h6><i class="cil-info"></i> Համակարգը նախատեսված է ...</h6>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

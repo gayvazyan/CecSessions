@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using CecSessions.Core.Entities
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -49,6 +55,8 @@
 </head>
 
 <body class="c-app">
+    @if(SignInManager.IsSignedIn(User))
+    {
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
         <div class="c-sidebar-brand d-lg-down-none">
             <img class="c-sidebar-brand-full" width="46" height="46" alt="CEC" src="~/images/logo-cec.png" />
@@ -57,8 +65,10 @@
 
         <partial name="_SideBar" />
 
+
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>
+    }
     <div class="c-wrapper c-fixed-components">
         <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
             <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
@@ -67,6 +77,9 @@
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="c-icon cil-menu c-icon-lg"></i>
             </button>
+             <ul class="c-header-nav ml-auto mr-4">
+                <partial name="_LoginPartial" />
+            </ul>
         </header>
         <div class="c-body">
             <main class="c-main">

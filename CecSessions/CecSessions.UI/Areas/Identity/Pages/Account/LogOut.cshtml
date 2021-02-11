@@ -1,0 +1,43 @@
+﻿@page
+@model LogoutModel
+
+@{
+    ViewData["Title"] = "Ելք համակարգից";
+}
+<br />
+<br />
+<br />
+<div style="width:600px" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <div class="col-10 ">
+                            <div class="card-body p-0 d-flex align-items-center">
+                                <i class="cil-lock-locked bg-success p-4 px-5 font-2xl mr-3 text-white"></i>
+                                <div>
+                                    <div class="text-value-sm text-info"> Ելք համակարգից</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label><i class="cil-info"></i> Ցանկանու՞մ եք դուրս գալ համակարգից:</label>
+                        </div>
+                        <hr />
+                            <div class="row">
+                                <div class="col-12">
+                                      <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+                                        &nbsp;<button type="submit" class="btn btn-lg btn-success px-4"><i class="cil-input"></i> Ելք</button> &nbsp;
+                                        <a class="btn btn-lg btn-danger px-4" href="/?page=%2FAccount%2FHome%2FIndex"><i class="cil-action-undo"></i> Չեղարկել</a>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

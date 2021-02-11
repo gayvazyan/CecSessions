@@ -1,9 +1,13 @@
+using CecSessions.Core.Entities;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PecMembers.UI.Areas.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +39,18 @@ namespace CecSessions.UI
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+
+            //part of Identity
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+              .AddRoles<IdentityRole>()
+               .AddEntityFrameworkStores<CecSessionsContext>();
+
+            services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+
+
             services.AddRazorPages();
+         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +72,7 @@ namespace CecSessions.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

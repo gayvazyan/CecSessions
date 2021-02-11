@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CecSessions.Core.Entities
 {
-    public class CecSessionsContext : DbContext
+    public class CecSessionsContext : IdentityDbContext<ApplicationUser>
     {
         public CecSessionsContext(DbContextOptions<CecSessionsContext> options)
             : base(options)
         {
         }
         public DbSet<UserDb> Users { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -39,3 +39,4 @@ namespace CecSessions.Core.Entities
         }
     }
 }
+

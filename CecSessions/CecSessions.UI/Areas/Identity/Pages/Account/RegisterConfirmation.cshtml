@@ -1,0 +1,38 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Գրանցման հաստատում";
+}
+
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+        <br />
+        <br />
+        <br />
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <div class="card-header text-white bg-info">
+                                    <h6>Գրանցման հաստատում</h6>
+                                </div>
+                                <hr />
+                                <div class="card-header text-white bg-success">
+                                    <h6>Ստուգեք Ձեր էլէկտրոնային հասցեն գրանցումը  հաստատելու համար</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <h6>Ստուգեք Ձեր էլէկտրոնային հասցեն գրանցումը  հաստատելու համար</h6>
+    }
+}

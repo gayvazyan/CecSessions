@@ -14,6 +14,12 @@ namespace CecSessions
             services.AddDbContextPool<CecSessionsContext>(
               options => options.UseSqlServer(configuration.GetConnectionString("CecSessionsDbConnection")));
 
+
+            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  .AddRoles<IdentityRole>()
+            //   .AddEntityFrameworkStores<CecSessionsContext>();
+
+           
         }
 
         public static void ConfigureServices(IServiceCollection services)

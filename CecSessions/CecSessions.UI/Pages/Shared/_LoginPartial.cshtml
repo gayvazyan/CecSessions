@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CecSessions.Core.Entities
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+     var user = await UserManager.GetUserAsync(User);
+     var name = user.UName;
+     var surName = user.PName;
+    <li class="c-header-nav-item dropdown">
+        <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+           @* <span>&nbsp;&nbsp;@UserManager.GetUserName(User) </span>*@
+            <span> @surName @name </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right pt-0">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/Identity/Account/Logout">
+                <i class="c-icon mr-2 cil-account-logout"></i> Ելք
+            </a>
+        </div>
+    </li>
+}
