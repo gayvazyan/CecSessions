@@ -1,0 +1,67 @@
+﻿@page
+@model CecSessions.UI.Pages.Admin.Roles.IndexModel
+
+@{
+    ViewData["Title"] = "Դերեր";
+}
+
+<form method="post" id="form">
+
+    <div class="card margin-top-20">
+
+        @* ----- START Toolbar ---- *@
+        <div class="card-header" style="padding:5px">
+            <a href="/Admin/Roles/Create" class="btn btn-success" title="Ավելացնել"><i class="cil-plus"></i> Ավելացնել</a>
+            <div class="card-header-actions">
+            </div>
+        </div>
+        @* ----- END Toolbar ---- *@
+
+        @* ----- START Grid ---- *@
+
+        <div class="grid card-body p-0">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr>
+                        <td><b>Id</b></td>
+                        <td><b>Անուն</b></td>
+                        <td class="commands"><b>Հրամաններ</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model.Roles.Count() != 0)
+                    {
+                    @foreach (var item in Model.Roles)
+                        {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td class="commands">
+                             <a class="btn btn-success text-white" href="/Admin/Roles/UpdateUsersInRole/@item.Id" title="Կցել օգտատեր">
+                                <i class="cil-paperclip"></i>
+                            </a>
+                            <a class="btn btn-info text-white" href="/Admin/Roles/Update/@item.Id" title="Խմբագրել">
+                                <i class="cil-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger" href="/Admin/Roles/Delete/@item.Id" title="Հեռացնել">
+                                <i class="cil-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                            }
+                    else
+                    {
+                    <tr>
+                        <td colspan="3"><div class="alert alert-warning text-center" role="alert"><i class="cil-warning"></i> Տվյալներ չկան</div></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @* ----- END Grid ---- *@
+</form>
+
+

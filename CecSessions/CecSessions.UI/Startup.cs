@@ -33,11 +33,11 @@ namespace CecSessions.UI
 
             ServicesInitializer.ConfigureServices(services);
 
-            //part of Session
-            services.AddHttpContextAccessor();
-            services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(30));
-            services.AddDistributedMemoryCache();
-            services.AddSession();
+            ////part of Session
+            //services.AddHttpContextAccessor();
+            //services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(30));
+            //services.AddDistributedMemoryCache();
+            //services.AddSession();
 
 
             //part of Identity

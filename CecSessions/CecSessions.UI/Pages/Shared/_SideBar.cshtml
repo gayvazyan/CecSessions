@@ -1,4 +1,9 @@
-﻿@inject IHttpContextAccessor HttpContextAccessor
+﻿@using Microsoft.AspNetCore.Identity
+@using CecSessions.Core.Entities
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 
 <ul class="c-sidebar-nav">
     <li class="c-sidebar-nav-item">
@@ -27,32 +32,42 @@
 
 
     <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="kkkkkk">
-                <i class="c-sidebar-nav-icon cil-lock-locked"></i> Մենյու 2
-            </a>
-        </li>
+        <a class="c-sidebar-nav-link" href="kkkkkk">
+            <i class="c-sidebar-nav-icon cil-lock-locked"></i> Մենյու 2
+        </a>
+    </li>
 
     <li class="c-sidebar-nav-divider"></li>
 
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
     <li class="c-sidebar-nav-title">
         Կառավարման մենյու
     </li>
-    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-        <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-            <i class="c-sidebar-nav-icon cil-newspaper"></i> Մենյու 1
-        </a>
-        <ul class="c-sidebar-nav-dropdown-items">
+    @*<li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+    <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+    <i class="c-sidebar-nav-icon cil-newspaper"></i> Մենյու 1
+    </a>
+    <ul class="c-sidebar-nav-dropdown-items">
 
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/language">
-                    <i class="c-sidebar-nav-icon cil-language"></i> Ենթակետ 1
-                </a>
-            </li>
-        </ul>
+    <li class="c-sidebar-nav-item">
+    <a class="c-sidebar-nav-link" href="/language">
+    <i class="c-sidebar-nav-icon cil-language"></i> Ենթակետ 1
+    </a>
+    </li>
+    </ul>
+    </li>*@
+    <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" href="/admin/users">
+            <i class="c-sidebar-nav-icon cil-people"></i> Օգտագործողներ
+        </a>
     </li>
     <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" href="/settings">
-            <i class="c-sidebar-nav-icon cil-settings"></i> Մենյու 2
+        <a class="c-sidebar-nav-link" href="/admin/roles">
+            <i class="c-sidebar-nav-icon cil-https"></i> Դերեր
         </a>
     </li>
+    }
+
+
 </ul>

@@ -1,0 +1,86 @@
+﻿@page
+@model CecSessions.UI.Pages.Admin.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Օգտագործողներ";
+}
+
+<form method="post" id="form">
+    <div class="card margin-top-20">
+        @* ----- START Toolbar ---- *@
+        @* <div class="card-header" style="padding:5px">
+        <a href="/User/Create" class="btn btn-success" title="Ավելացնել"><i class="cil-plus"></i>Ավելացնել</a>
+        <div class="card-header-actions">
+        <a class="card-header-action btn-minimize" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true">
+        <i class="btn btn-secondary cil-magnifying-glass"></i>
+        </a>
+        </div>
+        </div>*@
+        @* ----- END Toolbar ---- *@
+
+        @* ----- START Search ---- *@
+        @* <div class="collapse" id="collapseSearch">
+        <div class="card-body row searchCard" style="padding-bottom:0">
+        <div class="col-lg-3">
+        <div class="input-group mb-3">
+        <input class="form-control clearable" type="text" asp-for="Input.UserName" placeholder="@ls.Localize("name_L")">
+        <label>@ls.Localize("name_L")</label>
+        </div>
+        </div>
+        <div class="col-lg-3">
+        <div class="input-group mb-3">
+        <input class="form-control clearable" type="text" asp-for="Input.Email" placeholder="@ls.Localize("email_L")">
+        <label>@ls.Localize("email_L")</label>
+        </div>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-4 search-btn-block" style="min-width:205px;">
+        <a class="btn btn-secondary" onclick="Clear()"><i class="cil-clear-all"></i> @ls.Localize("Reset")</a>
+        <a class="btn btn-primary text-white" onclick="Search()"><i class="cil-magnifying-glass"></i> @ls.Localize("Search")</a>
+        </div>
+        </div>
+        </div>*@
+        @* ----- END Search ---- *@
+
+
+
+        @* ----- START Grid ---- *@
+
+
+        <div class="grid card-body p-0">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr>
+                        <td><b>Անուն</b></td>
+                        <td><b>Մուտքանուն</b></td>
+                        <td><b>Էլ․ հասցե</b></td>
+                        <td class="commands"><b>Հրամաններ</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InputList)
+                    {
+                    <tr>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+                        <td class="commands">
+                            <a class="btn btn-info text-white" href="/User/Update/@item.Id" title="Խմբագրել">
+                                <i class="cil-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger" href="/User/Delete/@item.Id" title="Հեռացնե">
+                                <i class="cil-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @* ----- END Grid ---- *@
+</form>
+
+

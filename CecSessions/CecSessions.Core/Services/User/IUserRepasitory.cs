@@ -2,5 +2,5 @@
 
 namespace CecSessions.Core
 {
-    public interface IUserRepasitory : IRepositories<UserDb> { }
+    public interface IUserRepasitory : IRepositories<ApplicationUser> { }
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CecSessions.Core", "CecSessions.Core\CecSessions.Core.csproj", "{0AEACD98-6CCA-4CF5-B394-445198FAD8C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CecSessions.UI", "CecSessions.UI\CecSessions.UI.csproj", "{C5F84E64-B635-42C3-BF8A-43D6F476EB5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CecSessions.UI", "CecSessions.UI\CecSessions.UI.csproj", "{C5F84E64-B635-42C3-BF8A-43D6F476EB5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
