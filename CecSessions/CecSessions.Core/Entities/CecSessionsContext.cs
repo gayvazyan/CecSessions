@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CecSessions.Core.Models.Session;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CecSessions.Core.Entities
@@ -9,7 +10,11 @@ namespace CecSessions.Core.Entities
             : base(options)
         {
         }
-        //public DbSet<UserDb> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<Result> Results { get; set; }
+        public DbSet<Question> Questions { get; set; }
+       
+        
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

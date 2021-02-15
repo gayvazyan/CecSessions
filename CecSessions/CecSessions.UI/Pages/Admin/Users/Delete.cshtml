@@ -1,0 +1,84 @@
+﻿@page "{id}"
+@model CecSessions.UI.Pages.Admin.Users.DeleteModel
+@{
+    ViewData["Title"] = "Հեռացնել";
+}
+
+<form method="post">
+   <input type="hidden" asp-for="@Model.Delete.Id" />
+   <input type="hidden" asp-for="@Model.Delete.UName" />
+   <input type="hidden" asp-for="@Model.Delete.PName" />
+   <input type="hidden" asp-for="@Model.Delete.NormalizedUserName" />
+   <input type="hidden" asp-for="@Model.Delete.NormalizedEmail" />
+   <input type="hidden" asp-for="@Model.Delete.EmailConfirmed" />
+   
+    <input type="hidden" asp-for="@Model.Delete.PasswordHash" />
+    <input type="hidden" asp-for="@Model.Delete.SecurityStamp" />
+    <input type="hidden" asp-for="@Model.Delete.ConcurrencyStamp" />
+    <input type="hidden" asp-for="@Model.Delete.PhoneNumber" />
+    <input type="hidden" asp-for="@Model.Delete.PhoneNumberConfirmed" />
+    <input type="hidden" asp-for="@Model.Delete.TwoFactorEnabled" />
+    <input type="hidden" asp-for="@Model.Delete.LockoutEnd" />
+    <input type="hidden" asp-for="@Model.Delete.LockoutEnabled" />
+    <input type="hidden" asp-for="@Model.Delete.AccessFailedCount" />
+    <div class="card card-input">
+        <div class="card-body p-0 d-flex align-items-center">
+            <i class="cil-trash bg-danger p-4 px-5 font-2xl mr-3 text-white"></i>
+            <div>
+                <div class="text-value-sm text-info">@ViewData["Title"]</div>
+                <div class="text-muted font-weight-bold small"></div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body row">
+            <div class="m-3 p-3" style="min-width:600px">
+                <partial name="_ValidationSummary" />
+                @if (Model.Errors.Count > 0)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            @foreach (var error in Model.Errors)
+                            {
+                                <li>@error.Code: @error.Description</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                <div class="form-group">
+                    <table class="table table-responsive-sm table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Մուտքանուն</td>
+                                <td>Էլ․ հասցե</td>
+                            </tr>
+                            <tr>
+                                <td>@Model.Delete.UserName</td>
+                                <td>@Model.Delete.Email</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card">
+                        <div class="card-body p-0 d-flex align-items-center">
+                            <i class="cil-warning bg-danger p-4 font-2xl mr-3 text-white"></i>
+                            <div>
+                                <div class="text-muted font-weight-bold">Տվյալները կհեռացվի ընդմիշտ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height:20px"></div>
+                <div class="row border-top margin-top-20" style="padding-top:20px">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-danger"><i class="cil-trash"></i> Հեռացնել</button>
+                        <a class="btn btn-secondary" asp-page="/Admin/Users/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,103 @@
+﻿@page "{id}"
+@model CecSessions.UI.Pages.Admin.Users.UpdateModel
+@{
+    ViewData["Title"] = "Թարմացնել";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Update.Id" />
+    <input type="hidden" asp-for="@Model.Update.EmailConfirmed" />
+    <input type="hidden" asp-for="@Model.Update.PasswordHash" />
+    <input type="hidden" asp-for="@Model.Update.SecurityStamp" />
+    <input type="hidden" asp-for="@Model.Update.ConcurrencyStamp" />
+    <input type="hidden" asp-for="@Model.Update.PhoneNumber" />
+    <input type="hidden" asp-for="@Model.Update.PhoneNumberConfirmed" />
+    <input type="hidden" asp-for="@Model.Update.TwoFactorEnabled" />
+    <input type="hidden" asp-for="@Model.Update.LockoutEnd" />
+    <input type="hidden" asp-for="@Model.Update.LockoutEnabled" />
+    <input type="hidden" asp-for="@Model.Update.AccessFailedCount" />
+   
+    <div class="card card-input">
+        <div class="card-body p-0 d-flex align-items-center">
+            <i class="cil-sync bg-primary p-4 px-5 font-2xl mr-3 text-white"></i>
+            <div>
+                <div class="text-value-sm text-info">@ViewData["Title"]</div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body row">
+            <div class="m-3 p-3 w-100">
+
+                <div style="max-width:600px">
+                    <div class="row">
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="col-12 mt-2">
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in Model.Errors)
+                                        {
+                                            <li>@error.Code: @error.Description</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="row margin-top-20">
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.UName">Անուն</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.UName">
+                            <span asp-validation-for="@Model.Update.UName" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.PName">Ազգանուն</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.PName">
+                            <span asp-validation-for="@Model.Update.PName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row margin-top-20">
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.UserName">Մուտքանուն</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.UserName">
+                            <span asp-validation-for="@Model.Update.UserName" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.NormalizedUserName">Մուտքանուն մեծ․</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.NormalizedUserName">
+                            <span asp-validation-for="@Model.Update.NormalizedUserName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row margin-top-20">
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.Email">Էլ․ հասցե</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.Email">
+                            <span asp-validation-for="@Model.Update.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.NormalizedEmail">Էլ․ հասցե մեծ․</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.NormalizedEmail">
+                            <span asp-validation-for="@Model.Update.NormalizedEmail" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height:20px"></div>
+                <div class="row border-top margin-top-20" style="padding-top:20px">
+                    <div class="col-12">
+                        <button class="btn btn-primary text-white"><i class="cil-sync"></i> Թարմացնել</button>
+                        <a class="btn btn-secondary" asp-page="/Admin/Users/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

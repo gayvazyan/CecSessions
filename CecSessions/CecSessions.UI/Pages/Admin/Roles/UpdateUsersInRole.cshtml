@@ -7,7 +7,7 @@
 
 <form method="post" enctype="multipart/form-data">
 
-     <input type="hidden" asp-for="@Model.RoleId" />
+    <input type="hidden" asp-for="@Model.RoleId" />
 
     <div class="card card-input">
         <div class="card-body p-0 d-flex align-items-center">
@@ -37,23 +37,54 @@
                     }
                 </div>
 
-                
+                <div class="grid card-body p-0">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                            <tr>
+                                <td><b>Id</b></td>
+                                <td><b>Օգտատեր</b></td>
+                                <td></td>
 
-                 @for (int i = 0; i < Model.UserRoleList.Count; i++)
-                 {
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.UserRoleList.Count != 0)
+                            {
+                            @for (int i = 0; i < Model.UserRoleList.Count; i++)
+                                {
+                            <input type="hidden" asp-for="@Model.UserRoleList[i].UserId" />
+                            <input type="hidden" asp-for="@Model.UserRoleList[i].UserName" />
+                            <tr>
+                                <td>@Model.UserRoleList[i].UserId</td>
+                                <td>@Model.UserRoleList[i].UserName</td>
+                                <td>
+                                    <input class="form-control" type="checkbox" asp-for="@Model.UserRoleList[i].IsSelected">
+                                </td>
+
+                            </tr>
+                               }
+                           }
+                            else
+                            {
+                            <tr>
+                                <td colspan="3"><div class="alert alert-warning text-center" role="alert"><i class="cil-warning"></i> Տվյալներ չկան</div></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+               @* @for (int i = 0; i < Model.UserRoleList.Count; i++)
+                {
                 <input type="hidden" asp-for="@Model.UserRoleList[i].UserId" />
                 <input type="hidden" asp-for="@Model.UserRoleList[i].UserName" />
-              @*   <div class="row margin-top-20">*@
                 <div class="col-lg-6">
                     <label class="text-success">Օգտատեր - @Model.UserRoleList[i].UserName </label>
                     <input style="margin-left: -20rem" class="form-control" type="checkbox" asp-for="@Model.UserRoleList[i].IsSelected">
                 </div>
-                  <div class="col-lg-6">
-                </div>
-               @*  </div>*@
-                 }
-              
-              
+                }*@
 
                 <div style="height:20px"></div>
                 <div class="col-lg-12 border-top margin-top-20" style="padding-top:20px">

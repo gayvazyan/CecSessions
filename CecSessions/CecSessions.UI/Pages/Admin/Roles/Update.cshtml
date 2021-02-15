@@ -1,0 +1,70 @@
+﻿@page "{id}"
+@model CecSessions.UI.Pages.Admin.Roles.UpdateModel
+@{
+    ViewData["Title"] = "Թարմացնել";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Update.Id" />
+    <input type="hidden" asp-for="@Model.Update.ConcurrencyStamp" />
+    <div class="card card-input">
+        <div class="card-body p-0 d-flex align-items-center">
+            <i class="cil-sync bg-primary p-4 px-5 font-2xl mr-3 text-white"></i>
+            <div>
+                <div class="text-value-sm text-info">@ViewData["Title"]</div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body row">
+            <div class="m-3 p-3 w-100">
+
+                <div style="max-width:600px">
+                    <div class="row">
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="col-12 mt-2">
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in Model.Errors)
+                                        {
+                                            <li>@error.Code: @error.Description</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="row margin-top-20">
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.Name">Անուն</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.Name">
+                            <span asp-validation-for="@Model.Update.Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label class="text-info" asp-for="@Model.Update.NormalizedName">Անուն մեծ․</label>
+                            <input class="form-control" type="text" asp-for="@Model.Update.NormalizedName">
+                            <span asp-validation-for="@Model.Update.NormalizedName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height:20px"></div>
+                <div class="row border-top margin-top-20" style="padding-top:20px">
+                    <div class="col-12">
+                        <button class="btn btn-primary text-white"><i class="cil-sync"></i> Թարմացնել</button>
+                        <a class="btn btn-secondary" asp-page="/Admin/Roles/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

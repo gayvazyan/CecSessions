@@ -1,5 +1,6 @@
 ﻿using CecSessions.Core;
 using CecSessions.Core.Entities;
+using CecSessions.Core.Services.ProcedureTest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +27,11 @@ namespace CecSessions
         {
             services.AddTransient(typeof(IRepositories<>), typeof(Repositories<>));
             
-            services.AddTransient<IUserRepasitory, UserRepasitory>();
+            services.AddTransient<ISessionRepasitory, SessionRepasitory>();
+            services.AddTransient<IQuestionRepasitory, QuestionRepasitory>();
+            services.AddTransient<IResultRepasitory, ResultRepasitory>();
+
+            services.AddTransient<IProcedureTest, ProcedureTest>();
 
         }
     }
