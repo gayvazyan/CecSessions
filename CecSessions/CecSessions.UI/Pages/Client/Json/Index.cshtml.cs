@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
+using CecSessions.Core.Models.Json;
 using CecSessions.Core.Services.ProcedureTest;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CecSessions.UI.Pages.Admin.Json
+namespace CecSessions.UI.Pages.Client.Json
 {
     public class IndexModel : PageModel
     {
@@ -19,13 +20,7 @@ namespace CecSessions.UI.Pages.Admin.Json
             JsonList = new List<ResultDataJson>();
         }
 
-        public class ResultDataJson
-        {
-            public int Id { get; set; }
-            public string Code { get; set; }
-            public string Data { get; set; }
-           
-        }
+       
 
         [BindProperty]
         public List<ResultDataJson> JsonList { get; set; }
@@ -33,7 +28,7 @@ namespace CecSessions.UI.Pages.Admin.Json
 
         public void OnGet()
         {
-
+            //-----------Start of Prepare Folder
             var uploadDir = Path.Combine(_env.WebRootPath, "json");
             var fileName = "data.json";
             string filePath = Path.Combine(uploadDir, fileName);
@@ -42,6 +37,24 @@ namespace CecSessions.UI.Pages.Admin.Json
                 var fileContent = System.IO.File.ReadAllText(filePath);
                 JsonList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ResultDataJson>>(fileContent);
             }
+
+            //-----------End of Prepare Folder
+
+
+
+            //-----------Start of Prepare Result
+
+            List<ResultDataJson> zoneData = new List<ResultDataJson>();
+            var zoneResult = _chartCommonService.ChartCandidateResult(electionId, "zone");
+            var zoneCodeList = zoneResult.Select(e => e.Code).Distinct().ToList();
+            foreach (var code in zoneCodeList)
+            {
+                var zoneDataList = zoneResult.Where(p => p.Code == code).ToList();
+                zoneData.Add(new ResultDataJson { Code = code, Data = zoneDataList });
+            }
+            resultDataJson.Add(new ResultDataJson { Code = "zone", Data = zoneData });
+
+            //-----------End of Prepare ResultZone
         }
     }
 }

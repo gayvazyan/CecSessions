@@ -16,6 +16,7 @@ namespace CecSessions.UI.Pages.Admin.Roles
         public CreateModel(RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
+            Input = new InputModel();
         }
 
         [BindProperty]
@@ -36,7 +37,6 @@ namespace CecSessions.UI.Pages.Admin.Roles
 
         public void OnGet()
         {
-            Input = new InputModel();
         }
 
         public async Task<ActionResult> OnPostAsync()

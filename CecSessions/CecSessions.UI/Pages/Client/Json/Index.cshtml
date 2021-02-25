@@ -1,5 +1,5 @@
 ﻿@page
-@model CecSessions.UI.Pages.Admin.Json.IndexModel
+@model CecSessions.UI.Pages.Client.Json.IndexModel
 @{
       ViewData["Title"] = "Table";
 }
@@ -37,8 +37,6 @@
 
 @section Scripts {
     <script>
-
-
         $(document).ready(function () {
             var headerHeight = Math.round($("header").innerHeight());
             var mainHeight = window.innerHeight - headerHeight;
@@ -48,7 +46,6 @@
 
             $('#table').DataTable();
         });
-
     </script>
 }
 
