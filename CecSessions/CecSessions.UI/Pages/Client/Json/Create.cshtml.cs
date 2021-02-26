@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CecSessions.Core;
 using CecSessions.Core.Models.Json;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -18,15 +20,20 @@ namespace CecSessions.UI.Pages.Client.Json
         public CreateModel(IWebHostEnvironment env)
         {
             _env = env;
+            Create = new CreateJsonModel();
+            ResultDataJsonList = new List<ResultDataJson>();
         }
 
         public string ResultFilePath { get; set; }
+        private JsonSerializerOptions jsonOptions { get; set; }
 
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public CreateJsonModel Create { get; set; }
 
-        public class InputModel : ResultDataJson { }
+        public class CreateJsonModel : ResultDataJson { }
+
+        public List<ResultDataJson> ResultDataJsonList { get; set; }
 
 
         private List<ServiceError> _errors;
@@ -40,43 +47,54 @@ namespace CecSessions.UI.Pages.Client.Json
         {
         }
 
-        public async Task<ActionResult> OnPostAsync()
+        public ActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    
 
-                    var resultDir = Path.Combine(_env.WebRootPath, "json", (DateTime.Now.ToString("dd_MM_yyyy") + "_result"));
+                    var resultDir = Path.Combine(_env.WebRootPath, "json");
                     if (!Directory.Exists(resultDir))
                     {
                         DirectoryInfo di = Directory.CreateDirectory(resultDir);
                     }
-
                     var resultFileName = "result.json";
                     string resultFilePath = Path.Combine(resultDir, resultFileName);
-                    ResultFilePath = "/json/" + (DateTime.Now.ToString("dd_MM_yyyy") + "_data") + "/" + resultFileName;
+                    ResultFilePath = "/json/" + resultFileName;
 
 
-                    //    var roles = _roleManager.Roles;
+                   
 
-                    //    if (roles.FirstOrDefault(p => p.Name == Input.RoleName) == null)
-                    //    {
-                    //        // We just need to specify a unique role name to create a new role
-                    //        var identityRole = new IdentityRole
-                    //        {
-                    //            Name = Input.RoleName
-                    //        };
-                    //        // Saves the role in the underlying AspNetRoles table
-                    //        var result = await _roleManager.CreateAsync(identityRole);
-                    //        return RedirectToPage("/Admin/Roles/Index");
-                    //    }
-                    //    else
-                    //    {
-                    //        Errors.Add(new ServiceError { Code = "Սխալ", Description = "Տվյալ անվանումով դեր գոյություն ունի։" });
-                    //    }
 
+                    if (System.IO.File.Exists(resultFilePath))
+                    {
+
+                            var fileContent = System.IO.File.ReadAllText(resultFilePath);
+                            List<ResultDataJson> fileJSONList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ResultDataJson>>(fileContent);
+
+                            foreach (var item in fileJSONList)
+                            {
+                               ResultDataJsonList.Add(item);
+                            }
+                            ResultDataJsonList.Add(new ResultDataJson { Id= ResultDataJsonList.Count +1, Code = Create.Code, Data = Create.Data });
                     }
+
+
+
+                    // Create Json file
+                    if (System.IO.File.Exists(resultFilePath))
+                    {
+                        System.IO.File.Delete(resultFilePath);
+                    }
+
+                    System.IO.File.WriteAllText(resultFilePath, JsonSerializer.Serialize(ResultDataJsonList, jsonOptions));
+
+
+                    return RedirectToPage("/Client/Json/Index");
+
+                }
                     
                     catch (Exception ex)
                 {
